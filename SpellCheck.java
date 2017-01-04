@@ -1,7 +1,8 @@
 public class SpellCheck{
 
     public static void main(String[] args){
-	// will be filled later
+		Window w = new Window();
+		w.setVisible(true);
     }
 
 }

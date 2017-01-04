@@ -7,7 +7,7 @@ public class Window extends JFrame implements ActionListener{
   private JLabel j;
   private JTextField t;
 
-  public Window3() {
+  public Window() {
     this.setTitle("My first GUI");
     this.setSize(600,400);
     this.setLocation(100,100);
@@ -31,14 +31,14 @@ public class Window extends JFrame implements ActionListener{
   }
 
   public void actionPerformed(ActionEvent e){
-   String event = e.getActionCommand();
-   if(event.equals("Byte")){
-     String s = t.getText();
-     s += "-0101000";
-     j.setText(s);
-   }
-   if(event.equals("NotByte")){
-    j.setText("Fish");
-   }
+    String event = e.getActionCommand();
+    if(event.equals("Byte")){
+      String s = t.getText();
+      s += "-0101000";
+      j.setText(s);
+    }
+    if(event.equals("NotByte")){
+      j.setText("Fish");
+    }
   }
 }
