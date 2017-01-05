@@ -31,17 +31,17 @@ public class SpellCheck{
 	return matchCount;
     }
 
-    public static int matchRatio(String A, String B) {
-	return charMatches(A, B)/A.length();
+    public static double matchRatio(String A, String B) {
+	return (double)charMatches(A, B)/A.length();
     }
 
     
     public static void main(String[] args){
 		Window w = new Window();
 		w.setVisible(true);
-        System.out.println(charMatches("quadratic","chicken"));
-	System.out.println(charMatches("pisza", "pizza"));
-	System.out.println(charMatches("pissza", "pizza"));
+        System.out.println(matchRatio("quadratic","chicken"));
+	System.out.println(matchRatio("pisza", "pizza"));
+	System.out.println(matchRatio("pissza", "pizza"));
     }
 
     
