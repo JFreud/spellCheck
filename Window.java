@@ -1,44 +1,50 @@
+// 
+
 import javax.swing.*;
-import java.awt.*;
+import java.awt.*;//NEW STUFF!
 import java.awt.event.*;
 
 public class Window extends JFrame implements ActionListener{
-  private Container pane;
-  private JLabel j;
-  private JTextField t;
+    private Container pane, inside, inside1, inside2;
+    private JLabel j, k, l;
+    private JTextField t, output, input;
 
-  public Window() {
-    this.setTitle("My first GUI");
-    this.setSize(600,400);
-    this.setLocation(100,100);
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    pane = this.getContentPane();
-    pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-    JButton b = new JButton("ByteMe");
-    b.addActionListener(this);
-    b.setActionCommand("Byte");
-    JButton b2 = new JButton("No...");
-    b2.addActionListener(this);
-    b2.setActionCommand("NotByte");
-    t = new JTextField(10);
-    JCheckBox c = new JCheckBox("OverClock");
-    j = new JLabel("Meaning of life is... ");
-    pane.add(c);
-    pane.add(t);
-    pane.add(b);
-    pane.add(b2);
-    pane.add(j);
-  }
+    public Window() {
+	this.setTitle("Spell Checker");
+	this.setSize(600,400);
+	this.setLocation(100,100);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-  public void actionPerformed(ActionEvent e){
-    String event = e.getActionCommand();
-    if(event.equals("Byte")){
-      String s = t.getText();
-      s += "-0101000";
-      j.setText(s);
+	pane = this.getContentPane();
+	inside = new Container();
+	inside1 = new Container();
+	inside2 = new Container();
+	pane.setLayout(new BorderLayout(10, 20));
+	inside.setLayout(new GridLayout());
+        inside1.setLayout(new GridLayout());
+	inside2.setLayout(new BoxLayout(inside2, 10));
+	JButton b = new JButton("Spell check!");
+	b.addActionListener(this);
+	b.setActionCommand("Byte");
+	t = new JTextField(2);
+	output = new JTextField(10);
+	input = new JTextField(10);
+	j = new JLabel("Input:");
+	k = new JLabel("Words changed:");
+	l = new JLabel("Output:");
+	pane.add(inside2, BorderLayout.PAGE_END);
+	pane.add(inside1, BorderLayout.CENTER);
+	pane.add(inside, BorderLayout.PAGE_START);
+	inside.add(j);
+	inside.add(l);
+	inside1.add(input);
+	inside1.add(output);
+	inside2.add(k);
+	inside2.add(t);
+	inside2.add(b);
     }
-    if(event.equals("NotByte")){
-      j.setText("Fish");
+
+    public void actionPerformed(ActionEvent e){
+        output.setText("helloooooo");
     }
-  }
 }
