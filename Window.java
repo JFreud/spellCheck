@@ -25,7 +25,7 @@ public class Window extends JFrame implements ActionListener{
     	inside2.setLayout(new BoxLayout(inside2, BoxLayout.PAGE_AXIS));
     	JButton b = new JButton("Spell check!");
     	b.addActionListener(this);
-    	b.setActionCommand("Byte");
+    	b.setActionCommand("Correct");
     	t = new JTextField(2);
     	output = new JTextField(10);
     	input = new JTextField(10);
@@ -45,6 +45,7 @@ public class Window extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        output.setText("helloooooo");
+      output.setText(input.getText());
+      t.setText("no changed words yet!");
     }
 }
