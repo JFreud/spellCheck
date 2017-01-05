@@ -1,8 +1,45 @@
 public class SpellCheck{
 
+
+     /* public int commonSubstring(String A, String B) {
+	String current = "";
+	for (int i = 0; i < A.length(); i++) {
+	    for (int j = B.length(); j > 0; j++) {
+    */
+
+
+    public static int charMatches(String A, String B) {
+	int matchCount = 0;
+	String first,second;
+	if (A.length() <= B.length()) {
+	    first = A;
+	    second = B;
+	}
+	else {
+	    first = B;
+	    second = A;
+	}
+	for (int i = 1; i < first.length()-1; i++) {
+	    if (first.charAt(i) == second.charAt(i) ||
+		first.charAt(i) == second.charAt(i-1) ||
+		first.charAt(i) == second.charAt(i+1)) {
+		//System.out.println(first.charAt(i));
+		//System.out.println(second.charAt(i));
+		matchCount += 1;
+	    }
+	}
+	return matchCount;
+    }
+
+    
     public static void main(String[] args){
 		Window w = new Window();
 		w.setVisible(true);
+        System.out.println(charMatches("quadratic","chicken"));
+	System.out.println(charMatches("pisza", "pizza"));
+	System.out.println(charMatches("pissza", "pizza"));
     }
+
+    
 
 }
