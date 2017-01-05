@@ -10,8 +10,8 @@ public class SpellCheck{
 
     public static int charMatches(String A, String B) {
 	int matchCount = 0;
-	String first,second;
-	if (A.length() <= B.length()) {//this is to prevent index outof bounds error
+	String first, second;
+	if (A.length() <= B.length()) {//this is to prevent index out of bounds error
 	    first = A;
 	    second = B;
 	}
@@ -33,8 +33,8 @@ public class SpellCheck{
 
     
     public static void main(String[] args){
-		Window w = new Window();
-		w.setVisible(true);
+        Window w = new Window();
+        w.setVisible(true);
         System.out.println(charMatches("quadratic","chicken"));
 	System.out.println(charMatches("pisza", "pizza"));
 	System.out.println(charMatches("pissza", "pizza"));
