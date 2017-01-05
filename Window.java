@@ -1,7 +1,7 @@
-// 
+// thanks Mr. K for the bulk of this code!
 
 import javax.swing.*;
-import java.awt.*;//NEW STUFF!
+import java.awt.*;
 import java.awt.event.*;
 
 public class Window extends JFrame implements ActionListener{
@@ -10,38 +10,38 @@ public class Window extends JFrame implements ActionListener{
     private JTextField t, output, input;
 
     public Window() {
-	this.setTitle("Spell Checker");
-	this.setSize(600,400);
-	this.setLocation(100,100);
-	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    	this.setTitle("Spell Checker");
+    	this.setSize(600,400);
+    	this.setLocation(100,100);
+    	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-	pane = this.getContentPane();
-	inside = new Container();
-	inside1 = new Container();
-	inside2 = new Container();
-	pane.setLayout(new BorderLayout(10, 20));
-	inside.setLayout(new GridLayout());
-        inside1.setLayout(new GridLayout());
-	inside2.setLayout(new BoxLayout(inside2, 10));
-	JButton b = new JButton("Spell check!");
-	b.addActionListener(this);
-	b.setActionCommand("Byte");
-	t = new JTextField(2);
-	output = new JTextField(10);
-	input = new JTextField(10);
-	j = new JLabel("Input:");
-	k = new JLabel("Words changed:");
-	l = new JLabel("Output:");
-	pane.add(inside2, BorderLayout.PAGE_END);
-	pane.add(inside1, BorderLayout.CENTER);
-	pane.add(inside, BorderLayout.PAGE_START);
-	inside.add(j);
-	inside.add(l);
-	inside1.add(input);
-	inside1.add(output);
-	inside2.add(k);
-	inside2.add(t);
-	inside2.add(b);
+    	pane = this.getContentPane();
+    	inside = new Container();
+    	inside1 = new Container();
+    	inside2 = new Container();
+    	pane.setLayout(new BorderLayout(10, 20));
+    	inside.setLayout(new GridLayout());
+      inside1.setLayout(new GridLayout());
+    	inside2.setLayout(new BoxLayout(inside2, BoxLayout.PAGE_AXIS));
+    	JButton b = new JButton("Spell check!");
+    	b.addActionListener(this);
+    	b.setActionCommand("Byte");
+    	t = new JTextField(2);
+    	output = new JTextField(10);
+    	input = new JTextField(10);
+    	j = new JLabel("Input:");
+    	k = new JLabel("Words changed:");
+    	l = new JLabel("Output:");
+    	pane.add(inside2, BorderLayout.PAGE_END);
+    	pane.add(inside1, BorderLayout.CENTER);
+    	pane.add(inside, BorderLayout.PAGE_START);
+    	inside.add(j);
+    	inside.add(l);
+    	inside1.add(input);
+    	inside1.add(output);
+    	inside2.add(k);
+    	inside2.add(t);
+    	inside2.add(b);
     }
 
     public void actionPerformed(ActionEvent e){
