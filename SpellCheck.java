@@ -31,6 +31,10 @@ public class SpellCheck{
 	return matchCount;
     }
 
+    public static int matchRatio(String A, String B) {
+	return charMatches(A, B)/A.length();
+    }
+
     
     public static void main(String[] args){
 		Window w = new Window();
