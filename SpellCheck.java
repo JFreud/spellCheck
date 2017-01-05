@@ -11,7 +11,7 @@ public class SpellCheck{
     public static int charMatches(String A, String B) {
 	int matchCount = 0;
 	String first,second;
-	if (A.length() <= B.length()) {
+	if (A.length() <= B.length()) {//this is to prevent index outof bounds error
 	    first = A;
 	    second = B;
 	}
@@ -19,7 +19,7 @@ public class SpellCheck{
 	    first = B;
 	    second = A;
 	}
-	for (int i = 1; i < first.length()-1; i++) {
+	for (int i = 1; i < first.length()-1; i++) {//runs through shorter word and checks whether the other word has a matching character within one position
 	    if (first.charAt(i) == second.charAt(i) ||
 		first.charAt(i) == second.charAt(i-1) ||
 		first.charAt(i) == second.charAt(i+1)) {
