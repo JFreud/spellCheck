@@ -31,13 +31,25 @@ public class SpellCheck{
 	return matchCount;
     }
 
+    public static double matchRatio(String A, String B) {
+	return (double)charMatches(A, B)/A.length();
+    }
+
     
     public static void main(String[] args){
+<<<<<<< HEAD
         Window w = new Window();
         w.setVisible(true);
         System.out.println(charMatches("quadratic","chicken"));
 	System.out.println(charMatches("pisza", "pizza"));
 	System.out.println(charMatches("pissza", "pizza"));
+=======
+		Window w = new Window();
+		w.setVisible(true);
+        System.out.println(matchRatio("quadratic","chicken"));
+	System.out.println(matchRatio("pisza", "pizza"));
+	System.out.println(matchRatio("pissza", "pizza"));
+>>>>>>> eb38fe2368fcfbc70b8295cfbc2157a06b320916
     }
 
     
