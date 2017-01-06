@@ -3,6 +3,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Window extends JFrame implements ActionListener{
     private Container pane, inside, inside1, inside2;
@@ -21,7 +22,7 @@ public class Window extends JFrame implements ActionListener{
     	inside2 = new Container();
     	pane.setLayout(new BorderLayout(10, 20));
     	inside.setLayout(new GridLayout());
-      inside1.setLayout(new GridLayout());
+        inside1.setLayout(new GridLayout());
     	inside2.setLayout(new BoxLayout(inside2, BoxLayout.PAGE_AXIS));
     	JButton b = new JButton("Spell check!");
     	b.addActionListener(this);
@@ -45,7 +46,9 @@ public class Window extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-      output.setText(input.getText());
-      t.setText("no changed words yet!");
+	//output.setText(input.getText());
+	//t.setText("no changed words yet!");
+      SpellCheck.inputtedToArray(input.getText());
+      SpellCheck.checkWords();
     }
 }
