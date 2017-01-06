@@ -10,7 +10,7 @@ public class SpellCheck{
         for (int j = B.length(); j > 0; j++) {
     */
 
-    private static ArrayList<String> alphabetical, reversed;
+    public static ArrayList<String> alphabetical, reversed, input;
     
     public static void dictionaryToArray(){
         alphabetical = new ArrayList<String>();
@@ -29,6 +29,16 @@ public class SpellCheck{
         for (int i = alphabetical.size() - 1; i >= 0; i --){
             reversed.add(alphabetical.get(i));
         }
+    }
+
+    public static ArrayList<String> inputtedToArray(String inputted){
+        Scanner sc = new Scanner(inputted);
+	input = new ArrayList<String>();
+	sc.useDelimiter(" ");
+	while (sc.hasNext()){
+	    input.add(sc.next());
+	}
+	return input;
     }
 
     public static int charMatches(String A, String B) {
@@ -57,7 +67,6 @@ public class SpellCheck{
     public static double matchRatio(String A, String B) {
         return (double)charMatches(A, B)/A.length();
     }
-
     
     public static void main(String[] args){
         Window w = new Window();
@@ -67,7 +76,5 @@ public class SpellCheck{
         System.out.println(charMatches("pissza", "pizza"));
         dictionaryToArray();
     }
-
-    
 
 }
