@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 public class SpellCheck{
 
 
@@ -7,20 +10,24 @@ public class SpellCheck{
         for (int j = B.length(); j > 0; j++) {
     */
 
-    private static final ArrayList alphabetical, reversed;
+    private static ArrayList<String> alphabetical, reversed;
     
-    public static ArrayList dictionaryToArray(){
-        ArrayList alphabetical = new ArrayList();
+    public static void dictionaryToArray(){
+        alphabetical = new ArrayList<String>();
+        File fileName = new File("words.txt");
         try {
-            Scanner sc = new Scanner(new File("words.txt"));
+            Scanner sc = new Scanner(fileName);
             sc.useDelimiter("\n");
-            while (sc.hasNext("\n")){
-            alphabetical.add(sc.next());
+            while (sc.hasNext()){
+                alphabetical.add(sc.next());
             }
-            return alphabetical;
         }
         catch (FileNotFoundException e){
-            return alphabetical;
+            System.out.println("You failed!");
+        }
+        reversed = new ArrayList<String>();
+        for (int i = alphabetical.size() - 1; i >= 0; i --){
+            reversed.add(alphabetical.get(i));
         }
     }
 
@@ -39,9 +46,9 @@ public class SpellCheck{
         if (first.charAt(i) == second.charAt(i) ||
         first.charAt(i) == second.charAt(i-1) ||
         first.charAt(i) == second.charAt(i+1)) {
-        //System.out.println(first.charAt(i));
-        //System.out.println(second.charAt(i));
-        matchCount += 1;
+            //System.out.println(first.charAt(i));
+            //System.out.println(second.charAt(i));
+            matchCount += 1;
         }
     }
     return matchCount;
@@ -58,6 +65,7 @@ public class SpellCheck{
         System.out.println(charMatches("quadratic","chicken"));
         System.out.println(charMatches("pisza", "pizza"));
         System.out.println(charMatches("pissza", "pizza"));
+        dictionaryToArray();
     }
 
     
