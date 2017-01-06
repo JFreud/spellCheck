@@ -10,7 +10,7 @@ public class SpellCheck{
         for (int j = B.length(); j > 0; j++) {
     */
 
-    public static ArrayList<String> alphabetical, reversed, input;
+   private static ArrayList<String> alphabetical, reversed, input;
     
     public static void dictionaryToArray(){
         alphabetical = new ArrayList<String>();
@@ -31,7 +31,7 @@ public class SpellCheck{
         }
     }
 
-    public static ArrayList<String> inputtedToArray(String inputted){
+    public static void inputtedToArray(String inputted){
         Scanner sc = new Scanner(inputted);
 	input = new ArrayList<String>();
 	sc.useDelimiter(" ");
@@ -39,6 +39,10 @@ public class SpellCheck{
 	    input.add(sc.next());
 	}
 	return input;
+    }
+
+    public static checkWords(){
+	
     }
 
     public static int charMatches(String A, String B) {
