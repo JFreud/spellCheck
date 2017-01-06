@@ -5,7 +5,7 @@ public class SpellCheck{
 
 
      /* public int commonSubstring(String A, String B) {
-    String current = "";
+    String current = ""; emacs test
     for (int i = 0; i < A.length(); i++) {
         for (int j = B.length(); j > 0; j++) {
     */
