@@ -42,7 +42,11 @@ public class SpellCheck{
     }
 
     public static checkWords(){
-	
+	for (int i = 0; i < input.size(); i ++){
+	    if (!alphabetized.contains(input.get(i))){
+		// add called functions here
+	    }
+	}
     }
 
     public static int charMatches(String A, String B) {
