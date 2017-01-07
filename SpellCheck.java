@@ -41,17 +41,7 @@ public class SpellCheck{
     	}
     }
 
-    /* public static void checkWords(String input){
-	dictionaryToArray();
-        changed = new ArrayList<String[]>();
-    	for (int i = 0; i < input.size(); i ++){
-    	    if (!alphabetical.contains(input.get(i))){
-    	        // add called functions here
-    	    }
-    	}
-	return;
-	}
-    */
+
 
     public static int charMatches(String A, String B) {
         int matchCount = 0;
@@ -79,14 +69,69 @@ public class SpellCheck{
     public static double matchRatio(String A, String B) {
         return (double)charMatches(A, B)/A.length();
     }
+
+
+    private static ArrayList<String> binarySearch(ArrayList<String> dict, String word) {
+	ArrayList<String> potential = new ArrayList<String>();
+	int low = 0;
+	int high = dict.size() - 1;
+	while (high >= low) {
+	    int mid = (low + high) / 2;
+	    if(dict.get(mid).compareTo(word) < 0) {
+		low = mid + 1;
+		System.out.println("was lower");
+		if (matchRatio(dict.get(mid), word) > 0.5) {
+		    potential.add(dict.get(mid));
+		}
+	    }
+	    if(dict.get(mid).compareTo(word) > 0) {
+		high = mid - 1;
+		System.out.println("was higher");
+		if (matchRatio(dict.get(mid), word) > 0.5) {
+		    potential.add(dict.get(mid));
+		}
+	    }
+	}
+	return potential;
+    }
+
+    public static String testPotential(String word) {
+	ArrayList<String> p = binarySearch(alphabetical, word);
+	String out = "";
+	for (int i = 0; i < p.size(); i++) {
+	    out += p.get(i) + " ";
+	}
+	return out;
+    }
+	    
+		
+
+	
+    /* public static String fLetterSearch(String word) {
+       toBeSearch = binarySearch*/
+
+    /* public static void checkWords(String input){
+	dictionaryToArray();
+        changed = new ArrayList<String[]>();
+    	for (int i = 0; i < input.size(); i ++){
+    	    if (!alphabetical.contains(input.get(i))){
+    	        //function
+    	    }
+    	}
+	return;
+    }
+    */
+
+    
     
     public static void main(String[] args){
         Window w = new Window();
         w.setVisible(true);
-        System.out.println(charMatches("quadratic","chicken"));
-        System.out.println(charMatches("pisza", "pizza"));
-        System.out.println(charMatches("pissza", "pizza"));
+	//System.out.println(charMatches("quadratic","chicken"));
+	// System.out.println(charMatches("pisza", "pizza"));
+	// System.out.println(charMatches("pissza", "pizza"));
         dictionaryToArray();
+	//System.out.println(alphabetical);
     }
 
 }
