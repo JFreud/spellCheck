@@ -41,14 +41,17 @@ public class SpellCheck{
     	}
     }
 
-    public static checkWords(){
+    /* public static void checkWords(String input){
+	dictionaryToArray();
         changed = new ArrayList<String[]>();
     	for (int i = 0; i < input.size(); i ++){
-    	    if (!alphabetized.contains(input.get(i))){
+    	    if (!alphabetical.contains(input.get(i))){
     	        // add called functions here
     	    }
     	}
-    }
+	return;
+	}
+    */
 
     public static int charMatches(String A, String B) {
         int matchCount = 0;
