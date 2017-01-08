@@ -56,13 +56,17 @@ public class SpellCheck{
         }
         for (int i = 1; i < first.length()-1; i++) {//runs through shorter word and checks whether the other word has a matching character within one position
             if (first.charAt(i) == second.charAt(i) ||
-            first.charAt(i) == second.charAt(i-1) ||
-            first.charAt(i) == second.charAt(i+1)) {
+		first.charAt(i) == second.charAt(i-1) ||
+		 first.charAt(i) == second.charAt(i+1))
+		{
                 //System.out.println(first.charAt(i));
                 //System.out.println(second.charAt(i));
                 matchCount += 1;
             }
         }
+	if (first.length() == second.length()) { //will increase matchRatio if words are same length
+	    matchCount += 1;
+	}
         return matchCount;
     }
 
@@ -77,27 +81,37 @@ public class SpellCheck{
 	int high = dict.size() - 1;
 	while (high >= low) {
 	    int mid = (low + high) / 2;
-            String test_word=dict.get(mid);
-	    if(test_word.compareTo(word) == 0) {
+            String testWord=dict.get(mid);
+	    if(testWord.compareTo(word) == 0) {
 		potential.clear();
 		potential.add(word);
 		return potential;
 	    }
-	    if(test_word.compareTo(word) < 0) {
+	    if(testWord.compareTo(word) < 0) {
 		low = mid + 1;
-		System.out.println(test_word + " was lower");
-		if (matchRatio(dict.get(mid), word) > 0.2) {
-		    potential.add(dict.get(mid));
+		System.out.println(testWord + " was lower");
+		if (matchRatio(testWord, word) > 0.2) {
+		    for(int i = -150; i <= 150; i++) {//if there is a similar word it adds the entire region as potential match
+			if(!(dict.get(mid + i).length() - 3 >= word.length())){
+			potential.add(dict.get(mid + i));
+			}
+		    }
 		}
+		    
+		    
 	    }
-	    if(test_word.compareTo(word) > 0) {
+	    if(testWord.compareTo(word) > 0) {
 		high = mid - 1;
-		System.out.println(test_word+" was higher");
-		if (matchRatio(dict.get(mid), word) > 0.2) {
-		    potential.add(dict.get(mid));
+		System.out.println(testWord+" was higher");
+		if (matchRatio(testWord, word) > 0.2) {
+		    for(int i = -150; i <= 150; i++) {
+			if(!(dict.get(mid + i).length() - 3 >= word.length())) {
+			potential.add(dict.get(mid + i));
+			}
+		    }
 		}
 	    }
-	}
+	    }
 	System.out.println("finished");
 	return potential;
     }
@@ -116,7 +130,9 @@ public class SpellCheck{
      public static String fLetterSearch(String word) {
 	 String bestMatch = "";
 	 ArrayList<String> toBeSearch = listPotential(alphabetical, word);
+	 toBeSearch.addAll(listPotential(reversed, word));
 	 for (int i = 0; i < toBeSearch.size(); i++) {
+	     System.out.println(toBeSearch.size());
 	     if (matchRatio(word, toBeSearch.get(i)) > matchRatio(word, bestMatch)) {
 		 bestMatch = toBeSearch.get(i);
 	     }
@@ -143,7 +159,7 @@ public class SpellCheck{
 	 w.setVisible(true);
 	 //System.out.println(matchRatio("quadratic","chicken"));
 	 //System.out.println(matchRatio("pisza", "pizza"));
-	 //System.out.println(matchRatio("pissza", "pizza"));
+	 System.out.println(matchRatio("helo", "hello"));
         dictionaryToArray();
 	//System.out.println(SpellCheck.testPotential("chicken"));
 	//System.out.println(alphabetical);
