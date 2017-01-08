@@ -71,32 +71,39 @@ public class SpellCheck{
     }
 
 
-    private static ArrayList<String> binarySearch(ArrayList<String> dict, String word) {
+    private static ArrayList<String> listPotential(ArrayList<String> dict, String word) {
 	ArrayList<String> potential = new ArrayList<String>();
 	int low = 0;
 	int high = dict.size() - 1;
 	while (high >= low) {
 	    int mid = (low + high) / 2;
-	    if(dict.get(mid).compareTo(word) < 0) {
+            String test_word=dict.get(mid);
+	    if(test_word.compareTo(word) == 0) {
+		potential.clear();
+		potential.add(word);
+		return potential;
+	    }
+	    if(test_word.compareTo(word) < 0) {
 		low = mid + 1;
-		System.out.println("was lower");
-		if (matchRatio(dict.get(mid), word) > 0.5) {
+		System.out.println(test_word + " was lower");
+		if (matchRatio(dict.get(mid), word) > 0.2) {
 		    potential.add(dict.get(mid));
 		}
 	    }
-	    if(dict.get(mid).compareTo(word) > 0) {
+	    if(test_word.compareTo(word) > 0) {
 		high = mid - 1;
-		System.out.println("was higher");
-		if (matchRatio(dict.get(mid), word) > 0.5) {
+		System.out.println(test_word+" was higher");
+		if (matchRatio(dict.get(mid), word) > 0.2) {
 		    potential.add(dict.get(mid));
 		}
 	    }
 	}
+	System.out.println("finished");
 	return potential;
     }
 
     public static String testPotential(String word) {
-	ArrayList<String> p = binarySearch(alphabetical, word);
+	ArrayList<String> p = listPotential(alphabetical, word);
 	String out = "";
 	for (int i = 0; i < p.size(); i++) {
 	    out += p.get(i) + " ";
@@ -104,11 +111,13 @@ public class SpellCheck{
 	return out;
     }
 	    
-		
 
 	
-    /* public static String fLetterSearch(String word) {
-       toBeSearch = binarySearch*/
+     public static String fLetterSearch(String word) {
+	 String bestMatch = "";
+	 ArrayList<String> toBeSearch = listPotential(alphabetical, word);
+	 for (int i = 0; i < toBeSearch.size(); i++) {
+	     
 
     /* public static void checkWords(String input){
 	dictionaryToArray();
@@ -126,11 +135,12 @@ public class SpellCheck{
     
     public static void main(String[] args){
         Window w = new Window();
-        w.setVisible(true);
-	//System.out.println(charMatches("quadratic","chicken"));
-	// System.out.println(charMatches("pisza", "pizza"));
-	// System.out.println(charMatches("pissza", "pizza"));
+	 w.setVisible(true);
+	 //System.out.println(matchRatio("quadratic","chicken"));
+	 //System.out.println(matchRatio("pisza", "pizza"));
+	 //System.out.println(matchRatio("pissza", "pizza"));
         dictionaryToArray();
+	//System.out.println(SpellCheck.testPotential("chicken"));
 	//System.out.println(alphabetical);
     }
 
