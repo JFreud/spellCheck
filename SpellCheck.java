@@ -117,7 +117,12 @@ public class SpellCheck{
 	 String bestMatch = "";
 	 ArrayList<String> toBeSearch = listPotential(alphabetical, word);
 	 for (int i = 0; i < toBeSearch.size(); i++) {
-	     
+	     if (matchRatio(word, toBeSearch.get(i)) > matchRatio(word, bestMatch)) {
+		 bestMatch = toBeSearch.get(i);
+	     }
+	 }
+	 return bestMatch;
+     }
 
     /* public static void checkWords(String input){
 	dictionaryToArray();
