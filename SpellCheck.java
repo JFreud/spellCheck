@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
 
+//dictionary used is from: https://github.com/dwyl/english-words.git
+
 public class SpellCheck{
 
 
@@ -27,9 +29,11 @@ public class SpellCheck{
             System.out.println("You failed!");
         }
         reversed = new ArrayList<String>();
-        for (int i = alphabetical.size() - 1; i >= 0; i --){
-            reversed.add(alphabetical.get(i));
+        for (int i = 0; i < alphabetical.size(); i++){
+            reversed.add(i, new StringBuilder(alphabetical.get(i)).reverse().toString());
         }
+	Collections.sort(reversed);
+	
     }
 
     public static void inputtedToArray(String inputted){
@@ -124,13 +128,20 @@ public class SpellCheck{
 	}
 	return out;
     }
+
+    public static ArrayList<String> reversePotential(ArrayList<String> potent) {
+	for (int i = 0; i < potent.size(); i++) {
+	    potent.set(i, new StringBuilder(potent.get(i)).reverse().toString());
+	}
+	return potent;
+    }
 	    
 
 	
-     public static String fLetterSearch(String word) {
+     public static String bestMatcher(String word) {
 	 String bestMatch = "";
 	 ArrayList<String> toBeSearch = listPotential(alphabetical, word);
-	 toBeSearch.addAll(listPotential(reversed, word));
+	 toBeSearch.addAll(reversePotential(listPotential(reversed, new StringBuilder(word).reverse().toString())));
 	 for (int i = 0; i < toBeSearch.size(); i++) {
 	     System.out.println(toBeSearch.size());
 	     if (matchRatio(word, toBeSearch.get(i)) > matchRatio(word, bestMatch)) {
@@ -140,17 +151,23 @@ public class SpellCheck{
 	 return bestMatch;
      }
 
-    /* public static void checkWords(String input){
+     public static String checkWords(String input){
+	 String output = "";
 	dictionaryToArray();
+	String[] inputText = input.replaceAll("\\p{P}", " ").toLowerCase().split(" ");
         changed = new ArrayList<String[]>();
-    	for (int i = 0; i < input.size(); i ++){
-    	    if (!alphabetical.contains(input.get(i))){
-    	        //function
-    	    }
-    	}
-	return;
+	for(int i = 0; i < inputText.length; i++) {
+	    if (alphabetical.contains(inputText[i])){
+		output += inputText[i] + " ";
+	    }
+	    else {
+		output += bestMatcher(inputText[i]) + " ";
+	    }
+	}
+     
+	return output;
     }
-    */
+  
 
     
     
@@ -163,6 +180,7 @@ public class SpellCheck{
         dictionaryToArray();
 	//System.out.println(SpellCheck.testPotential("chicken"));
 	//System.out.println(alphabetical);
+	//System.out.println(reversed);
     }
 
 }
