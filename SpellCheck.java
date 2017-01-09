@@ -5,7 +5,6 @@ import java.io.*;
 
 public class SpellCheck{
 
-
      /* public int commonSubstring(String A, String B) {
     String current = ""; emacs test!!!!
     for (int i = 0; i < A.length(); i++) {
@@ -36,7 +35,7 @@ public class SpellCheck{
 	
     }
 
-    public static void inputtedToArray(String inputted){
+    public static void inputtedToArray(String inputted){ // this function takes in the inputted text and turns it into an ArrayList
         Scanner sc = new Scanner(inputted);
     	input = new ArrayList<String>();
     	sc.useDelimiter(" ");
@@ -45,34 +44,47 @@ public class SpellCheck{
     	}
     }
 
-
-
-    public static int charMatches(String A, String B) {
-        int matchCount = 0;
-        String first, second;
-        if (A.length() <= B.length()) {//this is to prevent index out of bounds error
-            first = A;
-            second = B;
-        }
-        else {
-            first = B;
-            second = A;
-        }
-        for (int i = 1; i < first.length()-1; i++) {//runs through shorter word and checks whether the other word has a matching character within one position
-            if (first.charAt(i) == second.charAt(i) ||
-		first.charAt(i) == second.charAt(i-1) ||
-		 first.charAt(i) == second.charAt(i+1))
-		{
-                //System.out.println(first.charAt(i));
-                //System.out.println(second.charAt(i));
-                matchCount += 1;
-            }
-        }
-	if (first.length() == second.length()) { //will increase matchRatio if words are same length
-	    matchCount += 1;
+    public static int charMatches(String A, String B){
+	int matchCount = 0;
+	if (A.length() == B.length){
+	    for (int i = 0; i < A.length(); i ++){
+		if (A.charAt(i) == B.charAt(i)){
+		    matchCount ++;
+		}
+	    }
 	}
-        return matchCount;
+	else {
+	    
+	}
+	return matchCount;
     }
+
+    // public static int charMatches(String A, String B) {
+    //     int matchCount = 0;
+    //     String first, second;
+    //     if (A.length() <= B.length()) {//this is to prevent index out of bounds error
+    //         first = A;
+    //         second = B;
+    //     }
+    //     else {
+    //         first = B;
+    //         second = A;
+    //     }
+    //     for (int i = 1; i < first.length()-1; i++) {//runs through shorter word and checks whether the other word has a matching character within one position
+    //         if (first.charAt(i) == second.charAt(i) ||
+    // 		first.charAt(i) == second.charAt(i-1) ||
+    // 		 first.charAt(i) == second.charAt(i+1))
+    // 		{
+    //             //System.out.println(first.charAt(i));
+    //             //System.out.println(second.charAt(i));
+    //             matchCount += 1;
+    //         }
+    //     }
+    // 	if (first.length() == second.length()) { //will increase matchRatio if words are same length
+    // 	    matchCount += 1;
+    // 	}
+    //     return matchCount;
+    // }
 
     public static double matchRatio(String A, String B) {
         return (double)charMatches(A, B)/A.length();
@@ -117,6 +129,7 @@ public class SpellCheck{
 	    }
 	    }
 	System.out.println("finished");
+	System.out.println(potential.toString());
 	return potential;
     }
 
@@ -143,7 +156,7 @@ public class SpellCheck{
 	 ArrayList<String> toBeSearch = listPotential(alphabetical, word);
 	 toBeSearch.addAll(reversePotential(listPotential(reversed, new StringBuilder(word).reverse().toString())));
 	 for (int i = 0; i < toBeSearch.size(); i++) {
-	     System.out.println(toBeSearch.size());
+	     //System.out.println(toBeSearch.size());
 	     if (matchRatio(word, toBeSearch.get(i)) > matchRatio(word, bestMatch)) {
 		 bestMatch = toBeSearch.get(i);
 	     }
@@ -177,6 +190,8 @@ public class SpellCheck{
 	 //System.out.println(matchRatio("quadratic","chicken"));
 	 //System.out.println(matchRatio("pisza", "pizza"));
 	 System.out.println(matchRatio("helo", "hello"));
+	 System.out.println(charMatches("watermelon", "watermolon"));
+	 System.out.println(charMatches("watermolon", "watercolor"));
         dictionaryToArray();
 	//System.out.println(SpellCheck.testPotential("chicken"));
 	//System.out.println(alphabetical);
