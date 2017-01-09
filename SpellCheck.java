@@ -46,7 +46,7 @@ public class SpellCheck{
 
     public static int charMatches(String A, String B){
 	int matchCount = 0;
-	if (A.length() == B.length){
+	if (A.length() == B.length()){
 	    for (int i = 0; i < A.length(); i ++){
 		if (A.charAt(i) == B.charAt(i)){
 		    matchCount ++;
