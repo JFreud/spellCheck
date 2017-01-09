@@ -54,7 +54,25 @@ public class SpellCheck{
 	    }
 	}
 	else {
-	    
+	    String first, second;
+	    if (A.length() <= B.length()) {//this is to prevent index out of bounds error
+		first = A;
+		second = B;
+	    }
+	    else {
+		first = B;
+		second = A;
+	    }
+	    for (int i = 1; i < first.length()-1; i++) {//runs through shorter word and checks whether the other word has a matching character within one position
+		if (first.charAt(i) == second.charAt(i) ||
+		    first.charAt(i) == second.charAt(i-1) ||
+		    first.charAt(i) == second.charAt(i+1))
+		    {
+			//System.out.println(first.charAt(i));
+			//System.out.println(second.charAt(i));
+			matchCount += 1;
+		    }
+	    }
 	}
 	return matchCount;
     }
