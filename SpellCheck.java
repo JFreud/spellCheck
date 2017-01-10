@@ -36,11 +36,16 @@ public class SpellCheck{
 
     public static void commoners(){ // this function takes in the inputted text and turns it into an ArrayList
         File fileName = new File("common.txt");
-        Scanner sc = new Scanner(fileName);
         common = new ArrayList<String>();
-        sc.useDelimiter(" ");
-        while (sc.hasNext()){
-            common.add(sc.next().toLowerCase());
+        try {
+            Scanner sc = new Scanner(fileName);
+            sc.useDelimiter("\n");
+            while (sc.hasNext()){
+                common.add(sc.next());
+            }
+        }
+        catch (FileNotFoundException e){
+            System.out.println("You failed!");
         }
     }
 
@@ -48,8 +53,15 @@ public class SpellCheck{
         int matchCount = 0;
         if (A.length() == B.length()){
             for (int i = 0; i < A.length(); i ++){
-                if (A.charAt(i) == B.charAt(i)){
-                    matchCount ++;
+                if (i == 0 || i == A.length - 1){
+                    if (A.charAt(i) == B.charAt(i)){
+                        matchCount ++;
+                    }
+                }
+                else{
+                    if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i-1) || A.charAt(i) == B.charAt(i+1)) {
+                        matchCount += 1;
+                    }
                 }
             }
         }
@@ -70,7 +82,7 @@ public class SpellCheck{
                     {
                     //System.out.println(first.charAt(i));
                     //System.out.println(second.charAt(i));
-                    matchCount += 1;
+                        matchCount += 1;
                     }
             }
         }
