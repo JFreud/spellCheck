@@ -145,7 +145,7 @@ public class SpellCheck{
                 low = mid + 1;
                 System.out.println(testWord + " was lower");
                 if (matchRatio(testWord, word) > 0.2) {
-                    for(int i = -150; i <= 150; i++) {//if there is a similar word it adds the entire region as potential match
+                    for(int i = -2000; i <= 2000; i++) {//if there is a similar word it adds the entire region as potential match
                         if(!(dict.get(mid + i).length() - 3 >= word.length())){
                             potential.add(dict.get(mid + i));
                         }
@@ -156,7 +156,7 @@ public class SpellCheck{
                 high = mid - 1;
                 System.out.println(testWord+" was higher");
                 if (matchRatio(testWord, word) > 0.2) {
-                        for(int i = 150; i <= 150; i++) {
+                        for(int i = 2000; i <= 2000; i++) {
                             if(!(dict.get(mid + i).length() - 3 >= word.length())) {
                                 potential.add(dict.get(mid + i));
                             }
