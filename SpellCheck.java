@@ -80,15 +80,22 @@ public class SpellCheck{
                 first = B;
                 second = A;
             }
-            for (int i = 1; i < first.length()-1; i++) {//runs through shorter word and checks whether the other word has a matching character within one position
-                if (first.charAt(i) == second.charAt(i) ||
-                    first.charAt(i) == second.charAt(i-1) ||
-                    first.charAt(i) == second.charAt(i+1))
-                    {
-                    //System.out.println(first.charAt(i));
-                    //System.out.println(second.charAt(i));
-                        matchCount += 1;
+            for (int i = 0; i < first.length(); i ++){
+                if (i == 0){
+                    if (first.charAt(i) == second.charAt(i) || first.charAt(i) == second.charAt(i + 1)){
+                        matchCount ++;
                     }
+                }
+                else if (i == first.length() - 1){
+                    if (first.charAt(i) == second.charAt(i) || first.charAt(i) == second.charAt(i - 1)){
+                        matchCount ++;
+                    }
+                }
+                else{
+                    if (first.charAt(i) == second.charAt(i) || first.charAt(i) == second.charAt(i-1) || first.charAt(i) == second.charAt(i+1)) {
+                        matchCount ++;
+                    }
+                }
             }
         }
         if (common.contains(B)){
@@ -156,7 +163,7 @@ public class SpellCheck{
                 high = mid - 1;
                 System.out.println(testWord+" was higher");
                 if (matchRatio(testWord, word) > 0.2) {
-                        for(int i = 2000; i <= 2000; i++) {
+                        for(int i = -2000; i <= 2000; i++) {
                             if(!(dict.get(mid + i).length() - 3 >= word.length())) {
                                 potential.add(dict.get(mid + i));
                             }
