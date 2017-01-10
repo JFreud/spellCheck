@@ -54,8 +54,15 @@ public class SpellCheck{
         if (A.length() == B.length()){
             for (int i = 0; i < A.length(); i ++){
                 if (i == 0){
-                    if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i + 1)){
-                        matchCount ++;
+                    if (A.length() == 1){
+                        if (A.charAt(i) == B.charAt(i)){
+                            matchCount ++;
+                        }
+                    }
+                    else {
+                        if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i + 1)){
+                            matchCount ++;
+                        }
                     }
                 }
                 else if (i == A.length() - 1){
@@ -209,14 +216,25 @@ public class SpellCheck{
 
     public static String checkWords(String input){
         String output = "";
-        String[] inputText = input.replaceAll("\\p{P}", " ").toLowerCase().split(" ");
+        String punc = "";
+        String[] inputText = input.replaceAll("\n", " ").toLowerCase().split(" ");
+        for (int i = 0; i < inputText.length; i ++){
+            System.out.println(inputText[i]);
+        }
         changed = new ArrayList<String[]>();
         for(int i = 0; i < inputText.length; i++) {
-            if (alphabetical.contains(inputText[i])){
-                output += inputText[i] + " ";
+            if (inputText[i].charAt(inputText[i].length() - 1) < 65 || inputText[i].charAt(inputText[i].length() - 1) > 122 || (inputText[i].charAt(inputText[i].length() - 1) > 90 && inputText[i].charAt(inputText[i].length() - 1) < 97)){
+                punc = String.valueOf(inputText[i].charAt(inputText[i].length() - 1));
+                inputText[i] = inputText[i].substring(0, inputText[i].length() - 1);
             }
             else {
-                output += bestMatcher(inputText[i]) + " ";
+                punc = "";
+            }
+            if (alphabetical.contains(inputText[i])){
+                output += inputText[i] + punc + " ";
+            }
+            else {
+                output += bestMatcher(inputText[i]) + punc + " ";
             }
         }
         return output;
