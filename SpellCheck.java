@@ -53,14 +53,19 @@ public class SpellCheck{
         int matchCount = 0;
         if (A.length() == B.length()){
             for (int i = 0; i < A.length(); i ++){
-                if (i == 0 || i == A.length - 1){
-                    if (A.charAt(i) == B.charAt(i)){
+                if (i == 0){
+                    if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i + 1)){
+                        matchCount ++;
+                    }
+                }
+                else if (i == A.length() - 1){
+                    if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i - 1)){
                         matchCount ++;
                     }
                 }
                 else{
                     if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i-1) || A.charAt(i) == B.charAt(i+1)) {
-                        matchCount += 1;
+                        matchCount ++;
                     }
                 }
             }
@@ -151,7 +156,7 @@ public class SpellCheck{
                 high = mid - 1;
                 System.out.println(testWord+" was higher");
                 if (matchRatio(testWord, word) > 0.2) {
-                        for(int i = -150; i <= 150; i++) {
+                        for(int i = 150; i <= 150; i++) {
                             if(!(dict.get(mid + i).length() - 3 >= word.length())) {
                                 potential.add(dict.get(mid + i));
                             }
@@ -213,13 +218,13 @@ public class SpellCheck{
     public static void main(String[] args){
         Window w = new Window();
         w.setVisible(true);
+        dictionaryToArray();
+        commoners();
         //System.out.println(matchRatio("quadratic","chicken"));
         //System.out.println(matchRatio("pisza", "pizza"));
         //System.out.println(matchRatio("helo", "hello"));
-        //System.out.println(charMatches("watermelon", "watermolon"));
-        //System.out.println(charMatches("watermolon", "watercolor"));
-        dictionaryToArray();
-        commoners();
+        System.out.println(matchRatio("teh", "these"));
+        System.out.println(matchRatio("teh", "the"));
     }
 
 }
