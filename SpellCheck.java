@@ -11,7 +11,7 @@ public class SpellCheck{
         for (int j = B.length(); j > 0; j++) {
     */
 
-    private static ArrayList<String> alphabetical, reversed, input, common;
+    private static ArrayList<String> alphabetical, reversed, common;
     private static ArrayList<String[]> changed;
     
     public static void dictionaryToArray(){
@@ -31,17 +31,7 @@ public class SpellCheck{
         for (int i = 0; i < alphabetical.size(); i++){
             reversed.add(i, new StringBuilder(alphabetical.get(i)).reverse().toString());
         }
-    Collections.sort(reversed);
-    
-    }
-
-    public static void inputtedToArray(String inputted){ // this function takes in the inputted text and turns it into an ArrayList
-        Scanner sc = new Scanner(inputted);
-        input = new ArrayList<String>();
-        sc.useDelimiter(" ");
-        while (sc.hasNext()){
-            input.add(sc.next().toLowerCase());
-        }
+        Collections.sort(reversed);
     }
 
     public static void commoners(){ // this function takes in the inputted text and turns it into an ArrayList
@@ -83,6 +73,9 @@ public class SpellCheck{
                     matchCount += 1;
                     }
             }
+        }
+        if (common.contains(B)){
+            matchCount ++;
         }
         return matchCount;
     }
@@ -192,8 +185,6 @@ public class SpellCheck{
 
     public static String checkWords(String input){
         String output = "";
-        dictionaryToArray();
-        commoners();
         String[] inputText = input.replaceAll("\\p{P}", " ").toLowerCase().split(" ");
         changed = new ArrayList<String[]>();
         for(int i = 0; i < inputText.length; i++) {
@@ -206,22 +197,17 @@ public class SpellCheck{
         }
         return output;
     }
-  
-
-    
     
     public static void main(String[] args){
         Window w = new Window();
         w.setVisible(true);
         //System.out.println(matchRatio("quadratic","chicken"));
         //System.out.println(matchRatio("pisza", "pizza"));
-        System.out.println(matchRatio("helo", "hello"));
-        System.out.println(charMatches("watermelon", "watermolon"));
-        System.out.println(charMatches("watermolon", "watercolor"));
+        //System.out.println(matchRatio("helo", "hello"));
+        //System.out.println(charMatches("watermelon", "watermolon"));
+        //System.out.println(charMatches("watermolon", "watercolor"));
         dictionaryToArray();
-        //System.out.println(SpellCheck.testPotential("chicken"));
-        //System.out.println(alphabetical);
-        //System.out.println(reversed);
+        commoners();
     }
 
 }
