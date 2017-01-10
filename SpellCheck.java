@@ -230,8 +230,8 @@ public class SpellCheck{
         //System.out.println(matchRatio("quadratic","chicken"));
         //System.out.println(matchRatio("pisza", "pizza"));
         //System.out.println(matchRatio("helo", "hello"));
-        System.out.println(matchRatio("teh", "these"));
-        System.out.println(matchRatio("teh", "the"));
+        //System.out.println(matchRatio("teh", "these"));
+        //System.out.println(matchRatio("teh", "the"));
     }
 
 }
