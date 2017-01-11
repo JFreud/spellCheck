@@ -13,7 +13,12 @@ public class SpellCheck{
 
     private static ArrayList<String> alphabetical, reversed, common;
     private static ArrayList<String[]> changed;
-    
+
+
+    /**
+     * Creates two arraylists containing the words: one sorted alphabetically, one sorted inverse alphabetically
+     *
+     */
     public static void dictionaryToArray(){
         alphabetical = new ArrayList<String>();
         File fileName = new File("words.txt");
@@ -34,6 +39,10 @@ public class SpellCheck{
         Collections.sort(reversed);
     }
 
+    /**
+     *Creates arraylist of common words (from: http://www.ef.com/english-resources/english-vocabulary/top-3000-words/)
+     *
+     */
     public static void commoners(){ // this function takes in the inputted text and turns it into an ArrayList
         File fileName = new File("common.txt");
         common = new ArrayList<String>();
@@ -48,30 +57,35 @@ public class SpellCheck{
             System.out.println("You failed!");
         }
     }
-
+    /**
+     *Compares the similarity of two strings by checking to see if each letter in one word is also in the other word (within one position)
+     *
+     *@param A a string one wishs to compare
+     *@param B another string one wishes to compare
+     */
     public static int charMatches(String A, String B){
         int matchCount = 0;
         if (A.length() == B.length()){
             for (int i = 0; i < A.length(); i ++){
                 if (i == 0){
-                    if (A.length() == 1){
+                    if (A.length() == 1){ //if the word is one letter long it just matches the letter
                         if (A.charAt(i) == B.charAt(i)){
                             matchCount ++;
                         }
                     }
                     else {
-                        if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i + 1)){
+                        if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i + 1)){ //checks if first letter within1 position in other word
                             matchCount ++;
                         }
                     }
                 }
-                else if (i == A.length() - 1){
+                else if (i == A.length() - 1){ //checks if last letter within 1 position in other word
                     if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i - 1)){
                         matchCount ++;
                     }
                 }
                 else{
-                    if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i-1) || A.charAt(i) == B.charAt(i+1)) {
+                    if (A.charAt(i) == B.charAt(i) || A.charAt(i) == B.charAt(i-1) || A.charAt(i) == B.charAt(i+1)) {//checks if non-end letter is within 1 position in other word
                         matchCount ++;
                     }
                 }
@@ -105,7 +119,7 @@ public class SpellCheck{
                 }
             }
         }
-        if (common.contains(B)){
+        if (common.contains(B)){ //increases matchRatio if the word being compared is common
             matchCount ++;
         }
         return matchCount;
@@ -138,11 +152,22 @@ public class SpellCheck{
     //     return matchCount;
     // }
 
+    /**
+     *Compares the number of matches with the length of the word, creating the match ratio. This function calls charMatches.
+     *
+     *@param A string one wishes to compare
+     *@param B another string one wishes to comapre
+     */
     public static double matchRatio(String A, String B) {
         return (double)charMatches(A, B)/A.length();
     }
 
-
+    /**
+     *Creates an arraylist of potential words that have higher than a 0.2 matchRatio. It does this by running a binary search and taking the words centered around a word with high enough similarity. This attempts to stop the binary search from skipping important words.
+     *
+     *@param dict The dictionary that we want to use to compare with the word.
+     *@param word The word that we are searching for similarity to.
+     */
     private static ArrayList<String> listPotential(ArrayList<String> dict, String word) {
         ArrayList<String> potential = new ArrayList<String>();
         int low = 0;
@@ -178,11 +203,16 @@ public class SpellCheck{
                     }
                 }
             }
-        System.out.println("finished");
+        //System.out.println("finished");
         System.out.println(potential.toString());
         return potential;
     }
 
+    /**
+     *A function written to test the production of the arraylist of potential words
+     *
+     *@param the word you are looking for similarity to.
+     */
     public static String testPotential(String word) {
         ArrayList<String> p = listPotential(alphabetical, word);
         String out = "";
@@ -192,6 +222,7 @@ public class SpellCheck{
         return out;
     }
 
+   
     public static ArrayList<String> reversePotential(ArrayList<String> potent) {
         for (int i = 0; i < potent.size(); i++) {
             potent.set(i, new StringBuilder(potent.get(i)).reverse().toString());
@@ -200,7 +231,11 @@ public class SpellCheck{
     }
         
 
-    
+    /**
+     *A function that compares a word to the alphabetical and inverse alphabetical dictionary and returns the word with the highest similarity.
+     *
+     *@param word the word that is being compared to the arraylists of words.
+     */
     public static String bestMatcher(String word) {
         String bestMatch = "";
         ArrayList<String> toBeSearch = listPotential(alphabetical, word);
@@ -214,6 +249,11 @@ public class SpellCheck{
         return bestMatch;
     }
 
+    /**
+     *Takes a sentence and corrects each word.
+     *
+     *@param input the sentence that is being spell checked.
+     */
     public static String checkWords(String input){
         String output = "";
         String punc;
