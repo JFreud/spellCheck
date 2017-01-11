@@ -282,6 +282,9 @@ public class SpellCheck{
 	String returned = "";
 	for (int i = 0; i < changed.size(); i ++){
 	    returned += "[" + changed.get(i)[0] + ", " + changed.get(i)[1] + "]";
+	    if (i < changed.size() - 1){
+		returned += ", ";
+	    }
 	}
 	return returned;
     }
