@@ -204,7 +204,7 @@ public class SpellCheck{
                 }
             }
         //System.out.println("finished");
-        System.out.println(potential.toString());
+        //System.out.println(potential.toString());
         return potential;
     }
 
@@ -269,10 +269,21 @@ public class SpellCheck{
                 output += inputText[i] + punc + " ";
             }
             else {
-                output += bestMatcher(inputText[i]) + punc + " ";
+		String neww = bestMatcher(inputText[i]);
+                output += neww + punc + " ";
+		String[] added = {inputText[i], neww};
+		changed.add(added);
             }
         }
         return output;
+    }
+
+    public static String getChanged(){
+	String returned = "";
+	for (int i = 0; i < changed.size(); i ++){
+	    returned += "[" + changed.get(i)[0] + ", " + changed.get(i)[1] + "]";
+	}
+	return returned;
     }
     
     public static void main(String[] args){

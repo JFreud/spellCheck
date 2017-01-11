@@ -47,6 +47,7 @@ public class Window extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e){
 	output.setText(SpellCheck.checkWords(input.getText()));
+	t.setText(SpellCheck.getChanged());
 	//output.setText(input.getText());
 	//t.setText("no changed words yet!");
 //SpellCheck.inputtedToArray(input.getText());
