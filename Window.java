@@ -37,7 +37,7 @@ public class Window extends JFrame implements ActionListener{
     	r.setActionCommand("Rejection");
 
     	t = new JTextArea(2, 20);
-    	numbers = new JTextArea(3, 35);
+    	numbers = new JTextArea(4, 35);
     	output = new JTextArea(10, 100);
     	input = new JTextArea(10, 100);
     	t.setEditable(false);
@@ -74,13 +74,11 @@ public class Window extends JFrame implements ActionListener{
     	String event = e.getActionCommand();
     	if (event.equals("Correct")){
     		output.setText(SpellCheck.checkWords(input.getText()));
-	    	t.setText(SpellCheck.getChanged());
-	    	numbers.setText("If you would like to reject any changed words, do so here by         entering the index of the word in the list in ''words changed'' (first list is 0, second list is 1, etc.). DELETE THIS TEXT FIRST!");
     	}
     	else{
-    		String food = output.getText();
-    		String foood = t.getText();
-    		String fooood = numbers.getText();
+    		output.setText(SpellCheck.rejects(output.getText(), numbers.getText()));
     	}
+    	t.setText(SpellCheck.getChanged());
+	    numbers.setText("If you would like to reject any changed words, do so here by         entering the index of the word in the list in ''words changed'' (first list is 0, second list is 1, etc.) separated by a space each. DELETE  THIS TEXT FIRST!");
     }
 }

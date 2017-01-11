@@ -258,6 +258,19 @@ public class SpellCheck{
     	}
     	return returned;
     }
+
+    public static String rejects(String output, String numbers){
+        String[] nums = numbers.split(" ");
+        int[] ary = new int[nums.length];
+        for (int i = 0; i < nums.length; i ++){
+            int foo = Integer.parseInt(nums[i]);
+            output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
+        }
+        for (int i = ary.length - 1; i >= 0; i --){
+            changed.remove(ary[i]);
+        }
+        return output;
+    }
     
     public static void main(String[] args){
         Window w = new Window();
