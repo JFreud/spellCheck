@@ -216,19 +216,14 @@ public class SpellCheck{
 
     public static String checkWords(String input){
         String output = "";
-        String punc = "";
+        String punc;
         String[] inputText = input.replaceAll("\n", " ").toLowerCase().split(" ");
-        for (int i = 0; i < inputText.length; i ++){
-            System.out.println(inputText[i]);
-        }
         changed = new ArrayList<String[]>();
         for(int i = 0; i < inputText.length; i++) {
-            if (inputText[i].charAt(inputText[i].length() - 1) < 65 || inputText[i].charAt(inputText[i].length() - 1) > 122 || (inputText[i].charAt(inputText[i].length() - 1) > 90 && inputText[i].charAt(inputText[i].length() - 1) < 97)){
-                punc = String.valueOf(inputText[i].charAt(inputText[i].length() - 1));
+            punc = "";
+            while (inputText[i].charAt(inputText[i].length() - 1) < 65 || inputText[i].charAt(inputText[i].length() - 1) > 122 || (inputText[i].charAt(inputText[i].length() - 1) > 90 && inputText[i].charAt(inputText[i].length() - 1) < 97)){
+                punc += String.valueOf(inputText[i].charAt(inputText[i].length() - 1));
                 inputText[i] = inputText[i].substring(0, inputText[i].length() - 1);
-            }
-            else {
-                punc = "";
             }
             if (alphabetical.contains(inputText[i])){
                 output += inputText[i] + punc + " ";
