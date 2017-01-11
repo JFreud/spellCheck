@@ -5,12 +5,6 @@ import java.io.*;
 
 public class SpellCheck{
 
-     /* public int commonSubstring(String A, String B) {
-    String current = ""; emacs test!!!!
-    for (int i = 0; i < A.length(); i++) {
-        for (int j = B.length(); j > 0; j++) {
-    */
-
     private static ArrayList<String> alphabetical, reversed, common;
     private static ArrayList<String[]> changed;
 
@@ -125,33 +119,6 @@ public class SpellCheck{
         return matchCount;
     }
 
-    // public static int charMatches(String A, String B) {
-    //     int matchCount = 0;
-    //     String first, second;
-    //     if (A.length() <= B.length()) {//this is to prevent index out of bounds error
-    //         first = A;
-    //         second = B;
-    //     }
-    //     else {
-    //         first = B;
-    //         second = A;
-    //     }
-    //     for (int i = 1; i < first.length()-1; i++) {//runs through shorter word and checks whether the other word has a matching character within one position
-    //         if (first.charAt(i) == second.charAt(i) ||
-    //      first.charAt(i) == second.charAt(i-1) ||
-    //       first.charAt(i) == second.charAt(i+1))
-    //      {
-    //             //System.out.println(first.charAt(i));
-    //             //System.out.println(second.charAt(i));
-    //             matchCount += 1;
-    //         }
-    //     }
-    //  if (first.length() == second.length()) { //will increase matchRatio if words are same length
-    //      matchCount += 1;
-    //  }
-    //     return matchCount;
-    // }
-
     /**
      *Compares the number of matches with the length of the word, creating the match ratio. This function calls charMatches.
      *
@@ -258,8 +225,11 @@ public class SpellCheck{
         String output = "";
         String punc;
         String[] inputText = input.replaceAll("\n", " ").toLowerCase().split(" ");
+        //if (inputText.length <= 1){
+        //    return "You did not input any words for us to spell check. Please do so in the input box.";
+        //}
         changed = new ArrayList<String[]>();
-        for(int i = 0; i < inputText.length; i++) {
+        for (int i = 0; i < inputText.length; i++) {
             punc = "";
             while (inputText[i].charAt(inputText[i].length() - 1) < 65 || inputText[i].charAt(inputText[i].length() - 1) > 122 || (inputText[i].charAt(inputText[i].length() - 1) > 90 && inputText[i].charAt(inputText[i].length() - 1) < 97)){
                 punc += String.valueOf(inputText[i].charAt(inputText[i].length() - 1));
@@ -269,24 +239,24 @@ public class SpellCheck{
                 output += inputText[i] + punc + " ";
             }
             else {
-		String neww = bestMatcher(inputText[i]);
+		        String neww = bestMatcher(inputText[i]);
                 output += neww + punc + " ";
-		String[] added = {inputText[i], neww};
-		changed.add(added);
+		        String[] added = {inputText[i], neww};
+		        changed.add(added);
             }
         }
         return output;
     }
 
     public static String getChanged(){
-	String returned = "";
-	for (int i = 0; i < changed.size(); i ++){
-	    returned += "[" + changed.get(i)[0] + ", " + changed.get(i)[1] + "]";
-	    if (i < changed.size() - 1){
-		returned += ", ";
-	    }
-	}
-	return returned;
+    	String returned = "";
+    	for (int i = 0; i < changed.size(); i ++){
+    	    returned += "[" + changed.get(i)[0] + ", " + changed.get(i)[1] + "]";
+    	    if (i < changed.size() - 1){
+    		    returned += ", ";
+    	    }
+    	}
+    	return returned;
     }
     
     public static void main(String[] args){

@@ -6,9 +6,10 @@ import java.awt.event.*;
 import java.util.*;
 
 public class Window extends JFrame implements ActionListener{
-    private Container pane, inside, inside1, inside2;
+    private Container pane, inside, inside1, inside2, changes;
     private JLabel j, k, l;
-    private JTextField t, output, input;
+    private JButton b, r;
+    private JTextArea t, output, input, numbers;
 
     public Window() {
     	this.setTitle("Spell Checker");
@@ -20,19 +21,40 @@ public class Window extends JFrame implements ActionListener{
     	inside = new Container();
     	inside1 = new Container();
     	inside2 = new Container();
+    	changes = new Container();
+
     	pane.setLayout(new BorderLayout(10, 20));
     	inside.setLayout(new GridLayout());
         inside1.setLayout(new GridLayout());
     	inside2.setLayout(new BoxLayout(inside2, BoxLayout.PAGE_AXIS));
-    	JButton b = new JButton("Spell check!");
+    	changes.setLayout(new FlowLayout());
+
+    	b = new JButton("Spell check!");
     	b.addActionListener(this);
     	b.setActionCommand("Correct");
-    	t = new JTextField(2);
-    	output = new JTextField(10);
-    	input = new JTextField(10);
+    	r = new JButton("Reject changes");
+    	r.addActionListener(this);
+    	r.setActionCommand("Rejection");
+
+    	t = new JTextArea(2, 20);
+    	numbers = new JTextArea(3, 35);
+    	output = new JTextArea(10, 100);
+    	input = new JTextArea(10, 100);
+    	t.setEditable(false);
+    	output.setEditable(false);
+    	t.setLineWrap(true);
+    	numbers.setLineWrap(true);
+    	input.setLineWrap(true);
+    	output.setLineWrap(true);
+    	input.setBorder(new JTextField().getBorder());
+    	output.setBorder(new JTextField().getBorder());
+    	t.setBorder(new JTextField().getBorder());
+    	numbers.setBorder(new JTextField().getBorder());
+
     	j = new JLabel("Input:");
     	k = new JLabel("Words changed:");
     	l = new JLabel("Output:");
+
     	pane.add(inside2, BorderLayout.PAGE_END);
     	pane.add(inside1, BorderLayout.CENTER);
     	pane.add(inside, BorderLayout.PAGE_START);
@@ -43,15 +65,22 @@ public class Window extends JFrame implements ActionListener{
     	inside2.add(k);
     	inside2.add(t);
     	inside2.add(b);
+    	inside2.add(changes);
+    	changes.add(numbers);
+    	changes.add(r);
     }
 
     public void actionPerformed(ActionEvent e){
-	output.setText(SpellCheck.checkWords(input.getText()));
-	t.setText(SpellCheck.getChanged());
-	//output.setText(input.getText());
-	//t.setText("no changed words yet!");
-//SpellCheck.inputtedToArray(input.getText());
-
-      //SpellCheck.checkWords();
+    	String event = e.getActionCommand();
+    	if (event.equals("Correct")){
+    		output.setText(SpellCheck.checkWords(input.getText()));
+	    	t.setText(SpellCheck.getChanged());
+	    	numbers.setText("If you would like to reject any changed words, do so here by         entering the index of the word in the list in ''words changed'' (first list is 0, second list is 1, etc.). DELETE THIS TEXT FIRST!");
+    	}
+    	else{
+    		String food = output.getText();
+    		String foood = t.getText();
+    		String fooood = numbers.getText();
+    	}
     }
 }
