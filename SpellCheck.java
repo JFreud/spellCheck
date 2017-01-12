@@ -224,7 +224,10 @@ public class SpellCheck{
     public static String checkWords(String input){
         String output = "";
         String punc;
-        String[] inputText = input.replaceAll("\n", " ").toLowerCase().split(" ");
+        String[] inputText = input.toLowerCase().split("\n|\\ ");
+        for (int i = 0; i < inputText.length; i ++){
+            System.out.println(inputText[i]);
+        }
         if (inputText.length < 1){
             return "You did not input any words for us to spell check. Please do so in the input box.";
         }
@@ -232,8 +235,7 @@ public class SpellCheck{
         for (int i = 0; i < inputText.length; i++) {
             punc = "";
             try {
-                int a = Integer.parseInt(inputText[i]);
-                output += a + " ";
+                output += Integer.parseInt(inputText[i]) + " ";
                 continue;
             }
             catch (NumberFormatException e){
@@ -242,11 +244,21 @@ public class SpellCheck{
                     inputText[i] = inputText[i].substring(0, inputText[i].length() - 1);
                 }
                 if (alphabetical.contains(inputText[i])){
-                    output += inputText[i] + punc + " ";
+                    if (i == inputText.length - 1){
+                        output += inputText[i] + punc;
+                    }
+                    else {
+                        output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
+                    }
                 }
                 else {
                     String neww = bestMatcher(inputText[i]);
-                    output += neww + punc + " ";
+                    if (i == inputText.length - 1){
+                        output += neww + punc;
+                    }
+                    else {
+                        output += neww + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
+                    }
                     String[] added = {inputText[i], neww};
                     changed.add(added);
                 }
