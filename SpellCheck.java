@@ -162,7 +162,7 @@ public class SpellCheck{
                 high = mid - 1;
                 System.out.println(testWord+" was higher");
                 if (matchRatio(testWord, word) > 0.2) {
-                        for(int i = -2000; i <= 2000; i++) {
+                        for(int i = -1000; i <= 1000; i++) {
                             if(!(dict.get(mid + i).length() - 2 >= word.length())) {
                                 potential.add(dict.get(mid + i));
                             }
@@ -225,9 +225,9 @@ public class SpellCheck{
         String output = "";
         String punc;
         String[] inputText = input.toLowerCase().split(" ");
-        //if (inputText.length <= 1){
-        //    return "You did not input any words for us to spell check. Please do so in the input box.";
-        //}
+        if (inputText.length <= 1){
+           return "You did not input any words for us to spell check. Please do so in the input box.";
+        }
         changed = new ArrayList<String[]>();
         for (int i = 0; i < inputText.length; i++) {
             punc = "";
