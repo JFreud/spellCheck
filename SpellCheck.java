@@ -225,24 +225,31 @@ public class SpellCheck{
         String output = "";
         String punc;
         String[] inputText = input.toLowerCase().split(" ");
-        if (inputText.length <= 1){
-           return "You did not input any words for us to spell check. Please do so in the input box.";
+        if (inputText.length < 1){
+            return "You did not input any words for us to spell check. Please do so in the input box.";
         }
         changed = new ArrayList<String[]>();
         for (int i = 0; i < inputText.length; i++) {
             punc = "";
-            while (inputText[i].charAt(inputText[i].length() - 1) < 65 || inputText[i].charAt(inputText[i].length() - 1) > 122 || (inputText[i].charAt(inputText[i].length() - 1) > 90 && inputText[i].charAt(inputText[i].length() - 1) < 97)){
-                punc += String.valueOf(inputText[i].charAt(inputText[i].length() - 1));
-                inputText[i] = inputText[i].substring(0, inputText[i].length() - 1);
+            try {
+                int a = Integer.parseInt(inputText[i]);
+                output += a + " ";
+                continue;
             }
-            if (alphabetical.contains(inputText[i])){
-                output += inputText[i] + punc + " ";
-            }
-            else {
-		        String neww = bestMatcher(inputText[i]);
-                output += neww + punc + " ";
-		        String[] added = {inputText[i], neww};
-		        changed.add(added);
+            catch (NumberFormatException e){
+                while (inputText[i].charAt(inputText[i].length() - 1) < 65 || inputText[i].charAt(inputText[i].length() - 1) > 122 || (inputText[i].charAt(inputText[i].length() - 1) > 90 && inputText[i].charAt(inputText[i].length() - 1) < 97)){
+                    punc += String.valueOf(inputText[i].charAt(inputText[i].length() - 1));
+                    inputText[i] = inputText[i].substring(0, inputText[i].length() - 1);
+                }
+                if (alphabetical.contains(inputText[i])){
+                    output += inputText[i] + punc + " ";
+                }
+                else {
+                    String neww = bestMatcher(inputText[i]);
+                    output += neww + punc + " ";
+                    String[] added = {inputText[i], neww};
+                    changed.add(added);
+                }
             }
         }
         return output;
