@@ -224,7 +224,8 @@ public class SpellCheck{
     public static String checkWords(String input){
         String output = "";
         String punc;
-        String[] inputText = input.toLowerCase().split("\n|\\ ");
+        input = input.toLowerCase();
+        String[] inputText = input.split("\n|\\ ");
         for (int i = 0; i < inputText.length; i ++){
             System.out.println(inputText[i]);
         }
