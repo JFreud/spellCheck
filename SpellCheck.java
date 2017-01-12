@@ -224,7 +224,7 @@ public class SpellCheck{
     public static String checkWords(String input){
         String output = "";
         String punc;
-        String[] inputText = input.toLowerCase().split(" ");
+        String[] inputText = input.replaceAll("\n", " ").toLowerCase().split(" ");
         if (inputText.length < 1){
             return "You did not input any words for us to spell check. Please do so in the input box.";
         }
