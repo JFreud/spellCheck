@@ -149,7 +149,7 @@ public class SpellCheck{
             }
             if (testWord.compareTo(word) < 0) {
                 low = mid + 1;
-                System.out.println(testWord + " was lower");
+                //System.out.println(testWord + " was lower");
                 if (matchRatio(testWord, word) > 0.2) {
                     for(int i = -2000; i <= 2000; i++) {//if there is a similar word it adds the entire region as potential match
                         if(!(dict.get(mid + i).length() - 2 >= word.length())){
@@ -160,7 +160,7 @@ public class SpellCheck{
             }
             if(testWord.compareTo(word) > 0) {
                 high = mid - 1;
-                System.out.println(testWord+" was higher");
+                //System.out.println(testWord+" was higher");
                 if (matchRatio(testWord, word) > 0.2) {
                         for(int i = -1000; i <= 1000; i++) {
                             if(!(dict.get(mid + i).length() - 2 >= word.length())) {
@@ -282,9 +282,12 @@ public class SpellCheck{
     public static String rejects(String output, String numbers){
         String[] nums = numbers.split(" ");
         int[] ary = new int[nums.length];
+        int index = 0;
         for (int i = 0; i < nums.length; i ++){
             int foo = Integer.parseInt(nums[i]);
             output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
+            ary[index] = foo;
+            index ++;
         }
         for (int i = ary.length - 1; i >= 0; i --){
             changed.remove(ary[i]);
