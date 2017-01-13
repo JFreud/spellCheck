@@ -34,10 +34,12 @@ public class Window extends JFrame implements ActionListener{
     	b = new JButton("Spell check!");
     	b.addActionListener(this);
     	b.setActionCommand("Correct");
+	b.setForeground(new Color (0,180,0));
     	r = new JButton("Reject changes");
+	r.setForeground(new Color (180, 0, 0));
     	r.addActionListener(this);
     	r.setActionCommand("Rejection");
-
+	
     	t = new JTextArea(2, 20);
     	numbers = new JTextArea(4, 35);
     	output = new JTextArea(10, 100);
@@ -57,6 +59,14 @@ public class Window extends JFrame implements ActionListener{
     	t.setBorder(new JTextField().getBorder());
     	numbers.setBorder(new JTextField().getBorder());
 
+	
+	// Border roundedBorder = new LineBorder(new Color (255,255,255), 5, true);
+	// t.setBorder(roundedBorder);
+	// numbers.setBorder(roundedBorder);
+	// output.setBorder(roundedBorder);
+	// input.setBorder(roundedBorder);
+
+	
     	j = new JLabel("Input:");
     	k = new JLabel("Words changed:");
     	l = new JLabel("Output:");
