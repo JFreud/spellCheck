@@ -17,7 +17,7 @@ public class Window extends JFrame implements ActionListener{
     	this.setLocation(100,100);
     	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-	getContentPane().setBackground(new Color(107, 106, 104) );
+	getContentPane().setBackground(new Color(201, 200, 255) );
 	
     	pane = this.getContentPane();
     	inside = new Container();
