@@ -15,6 +15,7 @@ public class SpellCheck{
      */
     public static void dictionaryToArray(){
         alphabetical = new ArrayList<String>();
+       	taboo = new ArrayList<String>();//rejected word changes
         File fileName = new File("words.txt");
         try {
             Scanner sc = new Scanner(fileName);
@@ -205,9 +206,12 @@ public class SpellCheck{
      */
     public static String bestMatcher(String word) {
         String bestMatch = "";
-	taboo = new ArrayList<String>();//rejected word changes
+	//
         ArrayList<String> toBeSearch = listPotential(alphabetical, word);
         toBeSearch.addAll(reversePotential(listPotential(reversed, new StringBuilder(word).reverse().toString())));
+	for (int i = 0; i <taboo.size(); i++) {
+	    toBeSearch.remove(taboo.get(i));
+	}
         for (int i = 0; i < toBeSearch.size(); i++) {
             //System.out.println(toBeSearch.size());
             if (matchRatio(word, toBeSearch.get(i)) > matchRatio(word, bestMatch)) {
@@ -286,22 +290,52 @@ public class SpellCheck{
     	return returned;
     }
 
-    public static String rejects(String output, String numbers){
-        String[] nums = numbers.split(" ");
-        int[] ary = new int[nums.length];
-        int index = 0;
-        for (int i = 0; i < nums.length; i ++){
-            int foo = Integer.parseInt(nums[i]);
-            output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
-            ary[index] = foo;
-            index ++;
-        }
-        for (int i = ary.length - 1; i >= 0; i --){
-            changed.remove(ary[i]);
-        }
-        return output;
+    // public static String rejects(String output, String numbers){
+    //     String[] nums = numbers.split(" ");
+    //     int[] ary = new int[nums.length];
+    //     int index = 0;
+    //     for (int i = 0; i < nums.length; i ++){
+    //         int foo = Integer.parseInt(nums[i]);
+    //         output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
+    //         ary[index] = foo;
+    //         index ++;
+    //     }
+    //     for (int i = ary.length - 1; i >= 0; i --){
+    //         changed.remove(ary[i]);
+    //     }
+    //     return output;
+    // }
+
+    public static String rejects(String output, String numbers) {
+	String[] nums = numbers.split(" ");
+	int[] ary = new int[nums.length];
+	int index = 0;
+	for (int i = 0; i < nums.length; i++){
+	    String[] chary = nums[i].toCharArray();
+	    int foo = Integer.parseInt(chary[0]);
+	    if (chary[1] == 'r') {
+		output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
+		ary[index] = foo;
+		index ++;
+	    }
+	    else {
+		output = output.replaceAll(changed.get(foo)[1], bestMatcher(changed.get(foo)[0]));
+	        ary[index] = foo;
+		index++;
+	    }
+	}
+	    for (int i = ary.length - 1; i >= 0; i--) {
+		changed.remove(ary[i]);
+	    }
+	    return output;
     }
-    
+	
+
+
+
+
+
+	    
     public static void main(String[] args){
         Window w = new Window();
         w.setVisible(true);
