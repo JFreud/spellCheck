@@ -311,8 +311,8 @@ public class SpellCheck{
 	int[] ary = new int[nums.length];
 	int index = 0;
 	for (int i = 0; i < nums.length; i++){
-	    String[] chary = nums[i].toCharArray();
-	    int foo = Integer.parseInt(chary[0]);
+	    char[] chary = nums[i].toCharArray();
+	    int foo = Character.getNumericValue(chary[0]);
 	    if (chary[1] == 'r') {
 		output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
 		ary[index] = foo;
