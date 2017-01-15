@@ -5,7 +5,7 @@ import java.io.*;
 
 public class SpellCheck{
 
-    private static ArrayList<String> alphabetical, reversed, common;
+    private static ArrayList<String> alphabetical, reversed, common, taboo;
     private static ArrayList<String[]> changed;
 
 
@@ -205,6 +205,7 @@ public class SpellCheck{
      */
     public static String bestMatcher(String word) {
         String bestMatch = "";
+	taboo = new ArrayList<String>();//rejected word changes
         ArrayList<String> toBeSearch = listPotential(alphabetical, word);
         toBeSearch.addAll(reversePotential(listPotential(reversed, new StringBuilder(word).reverse().toString())));
         for (int i = 0; i < toBeSearch.size(); i++) {
@@ -213,9 +214,15 @@ public class SpellCheck{
                 bestMatch = toBeSearch.get(i);
             }
         }
+	taboo.add(bestMatch);
         return bestMatch;
     }
 
+
+    public void tabooClear() {
+	taboo.clear();
+    }
+    
     /**
      *Takes a sentence and corrects each word.
      *
