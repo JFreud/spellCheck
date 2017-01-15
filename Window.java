@@ -95,6 +95,6 @@ public class Window extends JFrame implements ActionListener{
     		output.setText(SpellCheck.rejects(output.getText(), numbers.getText()));
     	}
     	t.setText(SpellCheck.getChanged());
-	    numbers.setText("If you would like to reject any changed words, do so here by entering the index of the word in the list in ''words changed'', followed by an r(reject) or s(respell) (first list is 0r, second list is 1s, etc.) separated by a space each. DO NOT PRESS ENTER AND DELETE THIS TEXT FIRST!");
+	    numbers.setText("If you would like to reject any changed words, do so here by entering the index of the word in the list in ''words changed'', followed by an r(reject) or s(respell) (e.g. first list is 0r, second list is 1s, etc.) separated by a space each. DO NOT PRESS ENTER AND DELETE THIS TEXT FIRST!");
     }
 }
