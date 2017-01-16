@@ -206,25 +206,24 @@ public class SpellCheck{
      */
     public static String bestMatcher(String word) {
         String bestMatch = "";
-	//
         ArrayList<String> toBeSearch = listPotential(alphabetical, word);
         toBeSearch.addAll(reversePotential(listPotential(reversed, new StringBuilder(word).reverse().toString())));
-	for (int i = 0; i <taboo.size(); i++) {
-	    toBeSearch.remove(taboo.get(i));
-	}
+    	for (int i = 0; i <taboo.size(); i++) {
+    	    toBeSearch.remove(taboo.get(i));
+    	}
         for (int i = 0; i < toBeSearch.size(); i++) {
             //System.out.println(toBeSearch.size());
             if (matchRatio(word, toBeSearch.get(i)) > matchRatio(word, bestMatch)) {
                 bestMatch = toBeSearch.get(i);
             }
         }
-	taboo.add(bestMatch);
+	    taboo.add(bestMatch);
         return bestMatch;
     }
 
 
-    public void tabooClear() {
-	taboo.clear();
+    public static void tabooClear() {
+	   taboo.clear();
     }
     
     /**
@@ -237,9 +236,6 @@ public class SpellCheck{
         String punc;
         input = input.toLowerCase();
         String[] inputText = input.split("\n|\\ ");
-        for (int i = 0; i < inputText.length; i ++){
-            System.out.println(inputText[i]);
-        }
         if (inputText.length < 1){
             return "You did not input any words for us to spell check. Please do so in the input box.";
         }
@@ -307,45 +303,35 @@ public class SpellCheck{
     // }
 
     public static String rejects(String output, String numbers) {
-	String[] nums = numbers.split(" ");
-	int[] ary = new int[nums.length];
-	int index = 0;
-	for (int i = 0; i < nums.length; i++){
-	    char[] chary = nums[i].toCharArray();
-	    int foo = Character.getNumericValue(chary[0]);
-	    if (chary[1] == 'r') {
-		output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
-		ary[index] = foo;
-		index ++;
-	    }
-	    else {
-		output = output.replaceAll(changed.get(foo)[1], bestMatcher(changed.get(foo)[0]));
-	        ary[index] = foo;
-		index++;
-	    }
-	}
-	    for (int i = ary.length - 1; i >= 0; i--) {
-		changed.remove(ary[i]);
+    	String[] nums = numbers.split(" ");
+    	int[] ary = new int[nums.length];
+    	int index = 0;
+    	for (int i = 0; i < nums.length; i++){
+    	    char[] chary = nums[i].toCharArray();
+    	    int foo = Character.getNumericValue(chary[0]);
+    	    if (chary[1] == 'r') {
+    		    output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
+    		    ary[index] = foo;
+    		    index ++;
+    	    }
+    	    else {
+                String temp = bestMatcher(changed.get(foo)[0]);
+    		    output = output.replaceAll(changed.get(foo)[1], temp);
+                String[] adding = {changed.get(foo)[0], temp};
+    	        changed.set(foo, adding);
+    	    }
+        }
+	    for (int i = index - 1; i >= 0; i --) {
+		    changed.remove(ary[i]);
 	    }
 	    return output;
     }
-	
-
-
-
-
-
 	    
     public static void main(String[] args){
         Window w = new Window();
         w.setVisible(true);
         dictionaryToArray();
         commoners();
-        //System.out.println(matchRatio("quadratic","chicken"));
-        //System.out.println(matchRatio("pisza", "pizza"));
-        //System.out.println(matchRatio("helo", "hello"));
-        //System.out.println(matchRatio("teh", "these"));
-        //System.out.println(matchRatio("teh", "the"));
     }
 
 }

@@ -17,7 +17,7 @@ public class Window extends JFrame implements ActionListener{
     	this.setLocation(100,100);
     	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-	getContentPane().setBackground(new Color(201, 200, 255) );
+	    getContentPane().setBackground(new Color(201, 200, 255) );
 	
     	pane = this.getContentPane();
     	inside = new Container();
@@ -34,9 +34,9 @@ public class Window extends JFrame implements ActionListener{
     	b = new JButton("Spell check!");
     	b.addActionListener(this);
     	b.setActionCommand("Correct");
-	b.setForeground(new Color (0,180,0));
+	    b.setForeground(new Color (0,180,0));
     	r = new JButton("Reject changes");
-	r.setForeground(new Color (180, 0, 0));
+	    r.setForeground(new Color (180, 0, 0));
     	r.addActionListener(this);
     	r.setActionCommand("Rejection");
 	
@@ -60,11 +60,11 @@ public class Window extends JFrame implements ActionListener{
     	numbers.setBorder(new JTextField().getBorder());
 
 	
-	// Border roundedBorder = new LineBorder(new Color (255,255,255), 5, true);
-	// t.setBorder(roundedBorder);
-	// numbers.setBorder(roundedBorder);
-	// output.setBorder(roundedBorder);
-	// input.setBorder(roundedBorder);
+    	// Border roundedBorder = new LineBorder(new Color (255,255,255), 5, true);
+    	// t.setBorder(roundedBorder);
+    	// numbers.setBorder(roundedBorder);
+    	// output.setBorder(roundedBorder);
+    	// input.setBorder(roundedBorder);
 
 	
     	j = new JLabel("Input:");
@@ -89,6 +89,7 @@ public class Window extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e){
     	String event = e.getActionCommand();
     	if (event.equals("Correct")){
+            SpellCheck.tabooClear();
     		output.setText(SpellCheck.checkWords(input.getText()));
     	}
     	else{
