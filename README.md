@@ -19,7 +19,6 @@ Update: Final Project Readme file MUST include:
 
 -List of unresolved bugs
 
-    * Punctuation in middle of word is duplicated and replaces space (putting a comma after a word, will result in two commas being returned replacing a space)
     * Capitalization is not restored
     * It takes a longer than optimal time to run
     
