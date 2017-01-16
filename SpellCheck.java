@@ -261,7 +261,8 @@ public class SpellCheck{
                         output += inputText[i] + punc;
                     }
                     else {
-                        output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
+                        //output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
+			output += inputText[i] + punc + " ";
                     }
                 }
                 else {
