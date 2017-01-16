@@ -225,6 +225,8 @@ public class SpellCheck{
     public static void tabooClear() {
 	   taboo.clear();
     }
+
+	
     
     /**
      *Takes a sentence and corrects each word.
@@ -235,7 +237,8 @@ public class SpellCheck{
         String output = "";
         String punc;
         input = input.toLowerCase();
-        String[] inputText = input.split("\n|\\ ");
+        String[] inputText = input.split("\\s+");
+	
         if (inputText.length < 1){
             return "You did not input any words for us to spell check. Please do so in the input box.";
         }
