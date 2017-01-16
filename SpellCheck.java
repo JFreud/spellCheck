@@ -221,7 +221,9 @@ public class SpellCheck{
         return bestMatch;
     }
 
-
+    /**
+     *clears the list of corrections that were respellchecked
+     */
     public static void tabooClear() {
 	   taboo.clear();
     }
@@ -278,6 +280,12 @@ public class SpellCheck{
         return output;
     }
 
+
+    /**
+     *Returns the array of words changed
+     *
+     *
+     */
     public static String getChanged(){
     	String returned = "";
     	for (int i = 0; i < changed.size(); i ++){
@@ -304,6 +312,13 @@ public class SpellCheck{
     //     }
     //     return output;
     // }
+
+    /**
+     *Changes rejections back to original or respellchecks word
+     *
+     *@param output the output text that the program produced
+     *@param numbers the input into the reject changes field
+     */
 
     public static String rejects(String output, String numbers) {
     	String[] nums = numbers.split(" ");
