@@ -16,9 +16,12 @@ Update: Final Project Readme file MUST include:
     * Program still works if you add too much whitespace
     * Program restores punctuation at end of a sentence.
     * Program restores newlines
+    * When a word hits the end of the input box it moves to the next line
 
 -List of unresolved bugs
 
+    * Respellcheck doesn't do anything sometimes (I think when there aren't any other options)
+    * Respellcheck only works once, otherwise it just turns it back into the original correction
     * Capitalization is not restored
     * It takes a longer than optimal time to run
     
