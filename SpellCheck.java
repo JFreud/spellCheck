@@ -237,7 +237,7 @@ public class SpellCheck{
         String output = "";
         String punc;
         input = input.toLowerCase();
-        String[] inputText = input.split("\\s+");
+        String[] inputText = input.trim().split("\\s+");
 	
         if (inputText.length < 1){
             return "You did not input any words for us to spell check. Please do so in the input box.";
