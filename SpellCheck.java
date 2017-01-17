@@ -255,6 +255,9 @@ public class SpellCheck{
                         output += inputText[i] + punc;
                     }
                     else {
+                        while (input.charAt(input.indexOf(inputText[i]) + inputText[i].length()) != ' ' && input.charAt(input.indexOf(inputText[i]) + inputText[i].length()) != '\n'){
+                            input = input.substring(input.indexOf(inputText[i]) + inputText[i].length(), input.length());
+                        }
 			            output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
                     }
                 }
@@ -265,6 +268,9 @@ public class SpellCheck{
                             output += inputText[i] + punc;
                         }
                         else {
+                            while (input.charAt(input.indexOf(inputText[i]) + inputText[i].length()) != ' ' && input.charAt(input.indexOf(inputText[i]) + inputText[i].length()) != '\n'){
+                                input = input.substring(input.indexOf(inputText[i]) + inputText[i].length(), input.length());
+                            }
                             output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
                         }
                     }
@@ -273,6 +279,9 @@ public class SpellCheck{
                             output += neww + punc;
                         }
                         else {
+                            while (input.charAt(input.indexOf(inputText[i]) + inputText[i].length()) != ' ' && input.charAt(input.indexOf(inputText[i]) + inputText[i].length()) != '\n'){
+                                input = input.substring(input.indexOf(inputText[i]) + inputText[i].length(), input.length());
+                            }
                             output += neww + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
                         }
                     }
