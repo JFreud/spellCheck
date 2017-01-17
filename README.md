@@ -34,7 +34,7 @@ Our final project for semester 1 of APCS at Stuy.
 -Directions on how to use your program
 
     Step 1: Input text in top left box labeled "Input: ". The spell checked text will be printed out in the top right box labeled "Output: ".
-        NOTE: All punctuation (periods, commas, exclamation points, question marks, dashes, etc.) must be followed by a space.
+        NOTE: All punctuation (periods, commas, exclamation points, question marks, em-dashes, etc.) must be followed by a space.
     Step 2: Look at changes made in second box from bottom. (This will be blank if there were no changes performed.)
     Step 3: To reject a change type the index of the change in the changes box (starting from 0) followed by the letter 'r' for reject. (e.g. if I want to reject the second change, I would type "1r" into the reject box.)
         NOTE: Separate change/reject requests by ONLY one space
