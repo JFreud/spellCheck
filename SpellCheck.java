@@ -8,7 +8,6 @@ public class SpellCheck{
     private static ArrayList<String> alphabetical, reversed, common, taboo;
     private static ArrayList<String[]> changed;
 
-
     /**
      * Creates two arraylists containing the words: one sorted alphabetically, one sorted inverse alphabetically
      *
@@ -256,17 +255,26 @@ public class SpellCheck{
                         output += inputText[i] + punc;
                     }
                     else {
-                        //output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
-			output += inputText[i] + punc + " ";
+			            output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
                     }
                 }
                 else {
                     String neww = bestMatcher(inputText[i]);
-                    if (i == inputText.length - 1){
-                        output += neww + punc;
+                    if (neww.equals("")){
+                        if (i == inputText.length - 1){
+                            output += inputText[i] + punc;
+                        }
+                        else {
+                            output += inputText[i] + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
+                        }
                     }
                     else {
-                        output += neww + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
+                        if (i == inputText.length - 1){
+                            output += neww + punc;
+                        }
+                        else {
+                            output += neww + punc + input.charAt(input.indexOf(inputText[i]) + inputText[i].length());
+                        }
                     }
                     String[] added = {inputText[i], neww};
                     changed.add(added);
@@ -285,6 +293,9 @@ public class SpellCheck{
     public static String getChanged(){
     	String returned = "";
     	for (int i = 0; i < changed.size(); i ++){
+            if (changed.get(i)[1].equals("")){
+                changed.get(i)[1] = "This word is spelled incorrectly, but we could not find a new word for this incorrect word. Please do not respell or reject this word.";
+            }
     	    returned += "[" + changed.get(i)[0] + ", " + changed.get(i)[1] + "]";
     	    if (i < changed.size() - 1){
     		    returned += ", ";
@@ -307,7 +318,7 @@ public class SpellCheck{
     	for (int i = 0; i < nums.length; i++){
     	    char[] chary = nums[i].toCharArray();
     	    int foo = Character.getNumericValue(chary[0]);
-    	    if (chary[1] == 'r') {
+    	    if (chary[1] == 'r'){
     		    output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
     		    ary[index] = foo;
     		    index ++;

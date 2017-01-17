@@ -16,13 +16,13 @@ Our final project for semester 1 of APCS at Stuy.
     * Program restores newlines
     * When a word hits the end of the input box, it moves to the next line
     * The user can edit the input and the reject/respell text boxes but cannot edit the output and the words changed text boxes
+    * We added Javadocs to explain our SpellCheck class
 
 -List of unresolved bugs
 
-    * Respellcheck doesn't do anything sometimes - this is possibly because of there being no other possible words found in our dictionary search
-    * Respellcheck only works once, otherwise it just turns it back into the original correction - this is because of the algorithm we implemented for the respellcheck
+    * Respellcheck doesn't do anything sometimes or will switch between words - this is possibly because of there being no other possible words found in our dictionary search
     * Capitalization is not restored - this is because the code normalizes the input by lowercasing the text and it is too complicated to keep track of all letters that were possibly capitalized
-    * It takes a longer than optimal time to run - this is because of the large dictionary that we have, which has over 300k words
+    * It takes a longer than optimal time to run - this is because of the large dictionary that we have, which has over 300k words, and our inability to find a faster algorithm
 
 -Directions on how to compile and run your code 
 
@@ -33,6 +33,7 @@ Our final project for semester 1 of APCS at Stuy.
 -Directions on how to use your program
 
     Step 1: Input text in top left box labeled "Input: ". The spell checked text will be printed out in the top right box labeled "Output: ".
+        NOTE: All punctuation (periods, commas, exclamation points, question marks, dashes, etc.) must be followed by a space.
     Step 2: Look at changes made in second box from bottom. (This will be blank if there were no changes performed.)
     Step 3: To reject a change type the index of the change in the changes box (starting from 0) followed by the letter 'r' for reject. (e.g. if I want to reject the second change, I would type "1r" into the reject box.)
         NOTE: Separate change/reject requests by ONLY one space
