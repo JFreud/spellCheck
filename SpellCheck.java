@@ -298,22 +298,6 @@ public class SpellCheck{
     	return returned;
     }
 
-    // public static String rejects(String output, String numbers){
-    //     String[] nums = numbers.split(" ");
-    //     int[] ary = new int[nums.length];
-    //     int index = 0;
-    //     for (int i = 0; i < nums.length; i ++){
-    //         int foo = Integer.parseInt(nums[i]);
-    //         output = output.replaceAll(changed.get(foo)[1], changed.get(foo)[0]);
-    //         ary[index] = foo;
-    //         index ++;
-    //     }
-    //     for (int i = ary.length - 1; i >= 0; i --){
-    //         changed.remove(ary[i]);
-    //     }
-    //     return output;
-    // }
-
     /**
      *Changes rejections back to original or respellchecks word
      *
@@ -338,6 +322,7 @@ public class SpellCheck{
     		    output = output.replaceAll(changed.get(foo)[1], temp);
                 String[] adding = {changed.get(foo)[0], temp};
     	        changed.set(foo, adding);
+                taboo.remove(temp);
     	    }
         }
 	    for (int i = index - 1; i >= 0; i --) {

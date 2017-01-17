@@ -1,4 +1,4 @@
-// thanks Mr. K for the bulk of this code!
+// thanks Mr. K for the start of this code!
 
 import javax.swing.*;
 import java.awt.*;
