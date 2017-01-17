@@ -23,6 +23,7 @@ Our final project for semester 1 of APCS at Stuy.
     * Respellcheck doesn't do anything sometimes or will switch between words - this is possibly because of there being no other possible words found in our dictionary search
     * Capitalization is not restored - this is because the code normalizes the input by lowercasing the text and it is too complicated to keep track of all letters that were possibly capitalized
     * It takes a longer than optimal time to run - this is because of the large dictionary that we have, which has over 300k words, and our inability to find a faster algorithm
+    * When rejecting words, if there are common substrings between the word you're rejecting and other words in your output, all substrings will be changed - this is because we used replaceAll() in our rejects function
 
 -Directions on how to compile and run your code 
 
