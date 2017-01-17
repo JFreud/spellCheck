@@ -152,8 +152,8 @@ public class SpellCheck{
                 low = mid + 1;
                 //System.out.println(testWord + " was lower");
                 if (matchRatio(testWord, word) > 0.2) {
-                    for(int i = -2000; i <= 2000; i++) {//if there is a similar word it adds the entire region as potential match
-                        if(!(dict.get(mid + i).length() - 2 >= word.length())){
+                    for(int i = -1000; i <= 1000; i++) {//if there is a similar word it adds the entire region as potential match
+                        if(!(dict.get(mid + i).length() - 2 > word.length())){
                             potential.add(dict.get(mid + i));
                         }
                     }
@@ -164,7 +164,7 @@ public class SpellCheck{
                 //System.out.println(testWord+" was higher");
                 if (matchRatio(testWord, word) > 0.2) {
                         for(int i = -1000; i <= 1000; i++) {
-                            if(!(dict.get(mid + i).length() - 2 >= word.length())) {
+                            if(!(dict.get(mid + i).length() - 2 > word.length())) {
                                 potential.add(dict.get(mid + i));
                             }
                         }
@@ -190,7 +190,6 @@ public class SpellCheck{
         return out;
     }
 
-   
     public static ArrayList<String> reversePotential(ArrayList<String> potent) {
         for (int i = 0; i < potent.size(); i++) {
             potent.set(i, new StringBuilder(potent.get(i)).reverse().toString());
@@ -198,7 +197,6 @@ public class SpellCheck{
         return potent;
     }
         
-
     /**
      *A function that compares a word to the alphabetical and inverse alphabetical dictionary and returns the word with the highest similarity.
      *
