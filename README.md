@@ -24,6 +24,7 @@ Our final project for semester 1 of APCS at Stuy.
     * Capitalization is not restored - this is because the code normalizes the input by lowercasing the text and it is too complicated to keep track of all letters that were possibly capitalized
     * It takes a longer than optimal time to run - this is because of the large dictionary that we have, which has over 300k words, and our inability to find a faster algorithm
     * When rejecting words, if there are common substrings between the word you're rejecting and other words in your output, all substrings will be changed - this is because we used replaceAll() in our rejects function
+    * Punctuation does not work sometimes when inside the phrase (e.g. "hello hi, hey") - this can be fixed by slightly modifying the while loop inside our checkwords() function
 
 -Directions on how to compile and run your code 
 
@@ -34,7 +35,6 @@ Our final project for semester 1 of APCS at Stuy.
 -Directions on how to use your program
 
     Step 1: Input text in top left box labeled "Input: ". The spell checked text will be printed out in the top right box labeled "Output: ".
-        NOTE: All punctuation (periods, commas, exclamation points, question marks, em-dashes, etc.) must be followed by a space.
     Step 2: Look at changes made in second box from bottom. (This will be blank if there were no changes performed.)
     Step 3: To reject a change type the index of the change in the changes box (starting from 0) followed by the letter 'r' for reject. (e.g. if I want to reject the second change, I would type "1r" into the reject box.)
         NOTE: Separate change/reject requests by ONLY one space
