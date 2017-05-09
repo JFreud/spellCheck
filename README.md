@@ -1,5 +1,4 @@
 # spellCheck
-Our final project for semester 1 of APCS at Stuy.
 
 -Brief description of your project
 
